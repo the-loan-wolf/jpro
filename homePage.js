@@ -1,0 +1,1 @@
+const profileBtn=document.querySelector(".showProfileBtn button");profileBtn.addEventListener("click",(()=>{window.location.href="profilePage.html"}));const addResumeBtn=document.querySelector(".addResumeBtn button");addResumeBtn.addEventListener("click",(()=>{window.location.href="addResume.html"}));
