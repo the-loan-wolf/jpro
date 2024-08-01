@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Info</title>
+    <link rel="stylesheet" href="userinfo.css" />
+  </head>
+  <body class="antialiased text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
+
+    <div
+      class="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none"
+    >
+      <div class="w-[108rem] flex-none flex justify-end">
+        <picture>
+          <source srcset="assest/first.avif" type="image/avif" />
+          <img
+            src="assest/first.png"
+            alt=""
+            class="w-[71.75rem] flex-none max-w-none dark:hidden"
+            decoding="async" />
+        </picture>
+        <picture>
+          <source srcset="assest/second.avif" type="image/avif" />
+          <img
+            src="assest/second.png"
+            alt=""
+            class="w-[90rem] flex-none max-w-none hidden dark:block"
+            decoding="async"/>
+        </picture>
+      </div>
+    </div>
+    <header
+      class="flex justify-between p-2 sticky top-0 z-40 w-full backdrop-blur transition-colors duration-500 lg:z-50 border-b lg:border-slate-900/10 dark:border-slate-50/[0.06] bg-white/95 supports-backdrop-blur:bg-white/60 dark:bg-transparent"
+    >
+      <div id="logo" class="px-5"><h1>FreeJobSearch</h1></div>
+      <div id="filter"></div>
+      <div id="search"></div>
+      <div id="profile" class="px-5">
+        <p>Profile</p>
+        <div
+          id="profileDiv"
+          class="invisible border rounded-xl p-2 absolute w-40 right-1 flex flex-col justify-center items-center"
+        >
+          <div class="addResumeBtn">
+            <button class="hover:text-red-400">Add Your Resume</button>
+          </div>
+          <div class="showProfileBtn">
+            <button class="hover:text-red-400">Your Profile</button>
+          </div>
+        </div>
+    </header>
+    <main class="mt-5">
+      <div id="resume-data" class="flex ">
+        <div id="profilePicDiv" class="basis-1/3 h-[90vh] flex flex-col justify-center items-center">
+          <img src="assest/image-profile.jpg" alt="" class="w-36 rounded-2xl m-3">
+          <p>Name</p>
+        </div>
+        <div id="profileData" class="basis-2/3 h-[90vh] overflow-y-scroll scroll-smooth">
+          <form
+            action="post"
+            class="py-5 px-2 mb-5 font-poppins"
+            id="myForm"
+          >
+            <!-- ---------------------- Personal Info -------------------------------------------------------------- -->
+            <div id="personalInfo" class="border-b-2 border-current p-3">
+              <div class="py-3">
+                <div class="py-1 flex justify-between" id="resumeFNameDiv" style="display: none;">
+                  <label for="resumeFName">First Name</label>
+                  <input
+                    type="text"
+                    id="resumeFName"
+                    name="resumeFName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-1 flex justify-between" id="resumeMNameDiv" style="display: none;">
+                  <label for="resumeMName">Middle Name</label>
+                  <input
+                    type="text"
+                    id="resumeMName"
+                    name="resumeMName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-1 flex justify-between" id="resumeLNameDiv" style="display: none;">
+                  <label for="resumeLName">Last Name</label>
+                  <input
+                    type="text"
+                    id="resumeLName"
+                    name="resumeLName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+
+              <div class="py-3 flex justify-between" id="resumeDOBDiv" style="display: none;">
+                <label for="resumeDOB">Date of Birth</label>
+                <input
+                  type="date"
+                  id="resumeDOB"
+                  name="resumeDOB"
+                  class="focus:outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="py-3 flex justify-between" id="resumePhoneNoDiv" style="display: none;">
+                <label for="resumePhoneNo">Phone Number</label>
+                <input
+                  type="tel"
+                  id="resumePhoneNo"
+                  name="resumePhoneNo"
+                  pattern="[0-9]{10}"
+                  title="Example: 1234567895"
+                  maxlength="10"
+                  class="focus:outline-none bg-transparent"
+                  required
+                />
+              </div>
+
+              <div class="py-3 flex justify-between" id="resumeFatherNameDiv" style="display: none;">
+                <label for="resumeFatherName">Father Name</label>
+                <input
+                  type="text"
+                  id="resumeFatherName"
+                  name="resumeFatherName"
+                  class="focus:outline-none bg-transparent"
+                />
+              </div>
+
+              <div class="py-3 flex justify-between" id="resumeMotherNameDiv" style="display: none;">
+                <label for="resumeMotherName">Mother Name</label>
+                <input
+                  type="text"
+                  id="resumeMotherName"
+                  name="resumeMotherName"
+                  class="focus:outline-none bg-transparent"
+                />
+              </div>
+            </div>
+            <!-- ----------------- Address Info ----------------------------------------------------- -->
+            <div id="addressInfo" class="border-b-2 border-current p-3">
+              <div id="currentAddressPara"><p>Current Address</p></div>
+              <div id="currentAddress" class="py-3 border-b-2 border-current">
+                <div class="py-3 flex justify-between" id="resumeCountryDiv" style="display: none;">
+                  <label for="resumeCountry">Country</label>
+                  <input
+                    type="text"
+                    id="resumeCountry"
+                    name="resumeCountry"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumeStateDiv" style="display: none;">
+                  <label for="resumeState">State</label>
+                  <input
+                    type="text"
+                    id="resumeState"
+                    name="resumeState"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumeDistrictDiv" style="display: none;">
+                  <label for="resumeDistrict">District</label>
+                  <input
+                    type="text"
+                    id="resumeDistrict"
+                    name="resumeDistrict"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePlaceDiv" style="display: none;">
+                  <label for="resumePlace">City/Village</label>
+                  <input
+                    type="text"
+                    id="resumePlace"
+                    name="resumePlace"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePinDiv" style="display: none;">
+                  <label for="resumePin">Pin Code</label>
+                  <input
+                    type="text"
+                    id="resumePin"
+                    name="resumePin"
+                    pattern="[0-9]{6}"
+                    title="Example: 123456"
+                    maxlength="6"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumeAddrDiv" style="display: none;">
+                  <label for="resumeAddr">Remaining Address</label>
+                  <input
+                    type="text"
+                    id="resumeAddr"
+                    name="resumeAddr"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+              <div id="parmanentAddressPara" class="py-3">
+                <p>Parmanent Address</p>
+              </div>
+              <div id="parmanentAddress" class="py-3">
+                <div class="py-3 flex justify-between" id="resumePCountryDiv" style="display: none;">
+                  <label for="resumePCountry">Country</label>
+                  <input
+                    type="text"
+                    id="resumePCountry"
+                    name="resumePCountry"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePStateDiv" style="display: none;">
+                  <label for="resumePState">State</label>
+                  <input
+                    type="text"
+                    id="resumePState"
+                    name="resumePState"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePDistrictDiv" style="display: none;">
+                  <label for="resumePDistrict">District</label>
+                  <input
+                    type="text"
+                    id="resumePDistrict"
+                    name="resumePDistrict"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePPlaceDiv" style="display: none;">
+                  <label for="resumePPlace">City/Village</label>
+                  <input
+                    type="text"
+                    id="resumePPlace"
+                    name="resumePPlace"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePPinDiv" style="display: none;">
+                  <label for="resumePPin">Pin Code</label>
+                  <input
+                    type="text"
+                    id="resumePPin"
+                    name="resumePPin"
+                    pattern="[0-9]{6}"
+                    title="Example: 123456"
+                    maxlength="6"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+
+                <div class="py-3 flex justify-between" id="resumePAddrDiv" style="display: none;">
+                  <label for="resumePAddr">Remaining Address</label>
+                  <input
+                    type="text"
+                    id="resumePAddr"
+                    name="resumePAddr"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- ----------------- Educational Info ----------------------------------------------------- -->
+            <div id="educationalInfo" class="py-3 border-b-2 border-current">
+              <div><p>Educational</p></div>
+              <div>
+                <input type="checkbox" id="enableMatric" name="enableMatric" />
+                <label for="enableMatric">Add Matric / 10th Details</label>
+              </div>
+              <div id="matricDiv" class="py-3 border-b-2" style="display: none">
+                <div class="py-3"><p>Matric / 10th Details</p></div>
+                <div class="py-3 flex justify-between">
+                  <label for="matricInstName">Institute Name</label>
+                  <input
+                    type="text"
+                    id="matricInstName"
+                    name="matricInstName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="matricBoard">Board</label>
+                  <input
+                    type="text"
+                    id="matricBoard"
+                    name="matricBoard"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="matricMarks">Marks / Percentage Obtained</label>
+                  <input
+                    type="text"
+                    id="matricMarks"
+                    name="matricMarks"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+              <div>
+                <input type="checkbox" id="enableInter" name="enableInter" />
+                <label for="enableInter">Add Inter / 12th Details</label>
+              </div>
+              <div id="interDiv" class="py-3 border-b-2" style="display: none">
+                <div class="py-3"><p>Inter / 12th Details</p></div>
+                <div class="py-3 flex justify-between">
+                  <label for="interInstName">Institute Name</label>
+                  <input
+                    type="text"
+                    id="interInstName"
+                    name="interInstName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="interBoard">Board</label>
+                  <input
+                    type="text"
+                    id="interBoard"
+                    name="interBoard"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="interMarks">Marks / Percentage Obtained</label>
+                  <input
+                    type="text"
+                    id="interMarks"
+                    name="interMarks"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+              <div>
+                <input type="checkbox" id="enableUG" name="enableUG" />
+                <label for="enableUG">Add Undergraduate Details</label>
+              </div>
+              <div id="ugDiv" class="py-3 border-b-2" style="display: none">
+                <div class="py-3"><p>UG Details</p></div>
+                <div class="py-3 flex justify-between">
+                  <label for="ugInstName">Institute Name</label>
+                  <input
+                    type="text"
+                    id="ugInstName"
+                    name="ugInstName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="ugBoard">Board</label>
+                  <input
+                    type="text"
+                    id="ugBoard"
+                    name="ugBoard"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="ugMarks">Marks / Percentage Obtained</label>
+                  <input
+                    type="text"
+                    id="ugMarks"
+                    name="ugMarks"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+              <div>
+                <input type="checkbox" id="enablePG" name="enablePG" />
+                <label for="enablePG">Add Postgraduate Details</label>
+              </div>
+              <div id="pgDiv" class="py-3 border-b-2" style="display: none">
+                <div class="py-3"><p>PG Details</p></div>
+                <div class="py-3 flex justify-between">
+                  <label for="pgInstName">Institute Name</label>
+                  <input
+                    type="text"
+                    id="pgInstName"
+                    name="pgInstName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="pgBoard">Board</label>
+                  <input
+                    type="text"
+                    id="pgBoard"
+                    name="pgBoard"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="pgMarks">Marks / Percentage Obtained</label>
+                  <input
+                    type="text"
+                    id="pgMarks"
+                    name="pgMarks"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+              <div>
+                <input type="checkbox" id="enablePHD" name="enablePHD" />
+                <label for="enablePHD">Add PhD Details</label>
+              </div>
+              <div id="phdDiv" class="py-3" style="display: none">
+                <div class="py-3"><p>PhD Details</p></div>
+                <div class="py-3 flex justify-between">
+                  <label for="phdInstName">Institute Name</label>
+                  <input
+                    type="text"
+                    id="phdInstName"
+                    name="phdInstName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="phdBoard">Board</label>
+                  <input
+                    type="text"
+                    id="phdBoard"
+                    name="phdBoard"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between">
+                  <label for="phdMarks">Marks / Percentage Obtained</label>
+                  <input
+                    type="text"
+                    id="phdMarks"
+                    name="phdMarks"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- ----------------- Work Info ----------------------------------------------------- -->
+            <div id="workInfo" class="py-3 border-b-2 border-current">
+              <div id="workInfoChild">
+                <div class="py-3 flex justify-between" id="companyNameDiv" style="display: none;">
+                  <label for="companyName">Company Name</label>
+                  <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="compPostDiv" style="display: none;">
+                  <label for="compPost">Post</label>
+                  <input
+                    type="text"
+                    id="compPost"
+                    name="compPost"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="joinDateDiv" style="display: none;">
+                  <label for="joinDate">Joining Date</label>
+                  <input
+                    type="date"
+                    id="joinDate"
+                    name="joinDate"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="lastDateDiv" style="display: none;">
+                  <label for="lastDate">Worked Till</label>
+                  <input
+                    type="date"
+                    id="lastDate"
+                    name="lastDate"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="workExDiv" style="display: none;">
+                  <label for="workEx">Want to describe your work there?</label>
+                  <textarea
+                    type="text"
+                    id="workEx"
+                    name="workEx"
+                    class="focus:outline-none bg-transparent"
+                  >
+                  </textarea>
+                </div>
+              </div>
+            </div>
+            <!-- ----------------- Skill Info ----------------------------------------------------- -->
+            <div id="skillsInfo" class="py-3 border-b-2 border-current">
+              <div id="skillInfoChild">
+                <div class="py-3 flex justify-between" id="skillNameDiv" style="display: none;">
+                  <label for="skillName">Skill Name</label>
+                  <input
+                    type="text"
+                    id="skillName"
+                    name="skillName"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="skillSourceDiv" style="display: none;">
+                  <label for="skillSource">Where you learned it from</label>
+                  <input
+                    type="text"
+                    id="skillSource"
+                    name="skillSource"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+                <div class="py-3 flex justify-between" id="skillExDiv" style="display: none;">
+                  <label for="skillEx">Experience Time</label>
+                  <input
+                    type="text"
+                    id="skillEx"
+                    name="skillEx"
+                    class="focus:outline-none bg-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="userinfo.js"></script>
+    <script type="module" src="profileBtn.js"></script>
+  </body>
+</html>
