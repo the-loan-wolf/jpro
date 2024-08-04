@@ -146,3 +146,14 @@ button:hover {
   opacity: 0;
   animation: fadeOut 7s forwards;
 }
+
+@media only screen and (max-width: 480px) {
+  .container {
+    background: #fff;
+    width: 100%;
+    padding: 1.5rem;
+    margin: 50px auto;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+}
